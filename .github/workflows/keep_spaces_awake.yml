@@ -1,0 +1,20 @@
+name: Keep Hugging Face Spaces Awake
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This runs the job every day at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  keep-awake:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Send API request to Hospital Space
+        run: curl -X GET "https://tunixlabs-hospital.hf.space/submit-form"
+        
+      - name: Send API request to Facebook Sentiment Analysis Space
+        run: curl -X GET "https://tunixlabs-Facebook-sentiment-analisis.hf.space/scrape-posts"
+        
+      - name: Send API request to Hotel Space
+        run: curl -X GET "https://tunixlabs-hotel.hf.space/submit-form"
